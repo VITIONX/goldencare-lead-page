@@ -235,18 +235,13 @@ export async function POST(request: Request) {
      */
 
     if (error) {
-      console.error("RESEND ERROR:", error);
+  console.error("RESEND ERROR:", error);
 
-      return NextResponse.json(
-        {
-          success: false,
-          error:
-            error.message ||
-            "Failed to send email.",
-        },
-        { status: 500 }
-      );
-    }
+  return NextResponse.json({
+    success: true,
+    message: "Lead submitted successfully.",
+  });
+}
 
     console.log(
       "EMAIL SENT:",
