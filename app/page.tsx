@@ -1,4 +1,3 @@
-```tsx
 "use client";
 
 import { FormEvent, useState } from "react";
@@ -273,6 +272,7 @@ export default function Home() {
         =================================================== */}
 
         <div className="hero-content">
+
           {/* LEFT CONTENT */}
 
           <div className="hero-copy">
@@ -325,6 +325,7 @@ export default function Home() {
               <form
                 onSubmit={handleSubmit}
               >
+
                 {/* NAME */}
 
                 <div className="form-row">
@@ -377,16 +378,14 @@ export default function Home() {
                       State*
                     </option>
 
-                    {states.map(
-                      (state) => (
-                        <option
-                          key={state}
-                          value={state}
-                        >
-                          {state}
-                        </option>
-                      )
-                    )}
+                    {states.map((state) => (
+                      <option
+                        key={state}
+                        value={state}
+                      >
+                        {state}
+                      </option>
+                    ))}
                   </select>
 
                   <input
@@ -399,7 +398,7 @@ export default function Home() {
                   />
                 </div>
 
-                {/* EMAIL / PHONE */}
+                {/* EMAIL / PHONE — BOTH REQUIRED */}
 
                 <div className="form-row">
                   <input
@@ -532,6 +531,7 @@ export default function Home() {
               </form>
             </div>
           ) : (
+
             /* =================================================
                THANK YOU CARD
             ================================================= */
@@ -705,8 +705,8 @@ export default function Home() {
       ===================================================== */}
 
       <section className="care-section">
-        <div className="care-content">
 
+        <div className="care-content">
           <p className="eyebrow">
             PLAN WITH PURPOSE
           </p>
@@ -730,7 +730,6 @@ export default function Home() {
           >
             REQUEST A QUOTE
           </a>
-
         </div>
 
         <div className="care-image">
@@ -739,6 +738,7 @@ export default function Home() {
             alt="Family planning for the future"
           />
         </div>
+
       </section>
 
       {/* =====================================================
@@ -746,6 +746,7 @@ export default function Home() {
       ===================================================== */}
 
       <section className="trust-section">
+
         <div className="trust-inner">
 
           <p className="eyebrow">
@@ -773,6 +774,7 @@ export default function Home() {
           </a>
 
         </div>
+
       </section>
 
       {/* =====================================================
@@ -838,4 +840,3 @@ export default function Home() {
     </main>
   );
 }
-```
