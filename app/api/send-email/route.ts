@@ -114,7 +114,7 @@ export async function POST(request: Request) {
         from:
           "Golden Care Financial <onboarding@resend.dev>",
 
-        to: ["ahmedsakib857@gmail.com"],
+        to: ["marior@goldencare.com"],
 
         subject:
           `New Quote Request - ${firstName || ""} ${
