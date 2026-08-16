@@ -269,6 +269,10 @@ export default function Home() {
 
         {/* ===================================================
             HERO CONTENT
+
+            ONLY TWO COLUMNS:
+            LEFT = CONTENT
+            RIGHT = FORM
         =================================================== */}
 
         <div className="hero-content">
@@ -324,25 +328,25 @@ export default function Home() {
               <form
                 onSubmit={handleSubmit}
               >
-                {/* EMAIL / PHONE — MANDATORY */}
+                {/* NAME */}
 
                 <div className="form-row">
-                  <input
-                    type="email"
-                    name="email"
-                    placeholder="Email Address*"
-                    autoComplete="email"
-                    required
-                  />
+  <input
+    type="email"
+    name="email"
+    placeholder="Email Address*"
+    autoComplete="email"
+    required
+  />
 
-                  <input
-                    type="tel"
-                    name="phone"
-                    placeholder="555-555-1212*"
-                    autoComplete="tel"
-                    required
-                  />
-                </div>
+  <input
+    type="tel"
+    name="phone"
+    placeholder="555-555-1212*"
+    autoComplete="tel"
+    required
+  />
+</div>
 
                 {/* ADDRESS */}
 
@@ -395,6 +399,24 @@ export default function Home() {
                     inputMode="numeric"
                     autoComplete="postal-code"
                     required
+                  />
+                </div>
+
+                {/* EMAIL / PHONE */}
+
+                <div className="form-row">
+                  <input
+                    type="email"
+                    name="email"
+                    placeholder="Email Address"
+                    autoComplete="email"
+                  />
+
+                  <input
+                    type="tel"
+                    name="phone"
+                    placeholder="555-555-1212"
+                    autoComplete="tel"
                   />
                 </div>
 
@@ -551,6 +573,12 @@ export default function Home() {
 
         {/* =====================================================
             COMPANY LOGO MARQUEE
+
+            IMPORTANT:
+            This is OUTSIDE .hero-content.
+
+            Therefore it will NOT become a third grid
+            column/row and all logos will stay horizontal.
         ===================================================== */}
 
         <div className="company-marquee">
