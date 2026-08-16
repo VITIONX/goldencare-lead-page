@@ -1,6 +1,9 @@
 import { NextResponse } from "next/server";
 import { Resend } from "resend";
 
+const GOOGLE_SHEET_WEBHOOK =
+  "https://script.google.com/macros/s/AKfycbx_sJwOPqhzzesc6TmsFZQOmJnPNl2fAZufpXBvtrf14zwpQGgCd1kKa354D5dXUG8/exec";
+
 export async function GET() {
   return NextResponse.json({
     success: true,
@@ -41,25 +44,100 @@ export async function POST(request: Request) {
       bestContactTime,
     } = data;
 
+    /*
+     * ========================================================
+     * SAVE LEAD TO GOOGLE SHEET
+     * ========================================================
+     */
+
+    try {
+      const sheetResponse = await fetch(
+        GOOGLE_SHEET_WEBHOOK,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            firstName: firstName || "",
+            lastName: lastName || "",
+            streetAddress: streetAddress || "",
+            city: city || "",
+            state: state || "",
+            zipCode: zipCode || "",
+            email: email || "",
+            phone: phone || "",
+            age: age || "",
+            gender: gender || "",
+            spouseGender: spouseGender || "",
+            bestContactTime: bestContactTime || "",
+          }),
+          redirect: "follow",
+        }
+      );
+
+      const sheetText = await sheetResponse.text();
+
+      console.log(
+        "GOOGLE SHEET STATUS:",
+        sheetResponse.status
+      );
+
+      console.log(
+        "GOOGLE SHEET RESPONSE:",
+        sheetText
+      );
+
+      if (!sheetResponse.ok) {
+        console.error(
+          "GOOGLE SHEET ERROR:",
+          sheetText
+        );
+      }
+    } catch (sheetError) {
+      console.error(
+        "GOOGLE SHEET REQUEST ERROR:",
+        sheetError
+      );
+    }
+
+    /*
+     * ========================================================
+     * SEND EMAIL WITH RESEND
+     * ========================================================
+     */
+
     const resend = new Resend(apiKey);
 
     const { data: emailData, error } =
       await resend.emails.send({
-        from: "Golden Care Financial <onboarding@resend.dev>",
+        from:
+          "Golden Care Financial <onboarding@resend.dev>",
+
         to: ["ahmedsakib857@gmail.com"],
-        subject: `New Quote Request - ${firstName || ""} ${
-          lastName || ""
-        }`,
+
+        subject:
+          `New Quote Request - ${firstName || ""} ${
+            lastName || ""
+          }`,
+
         html: `
-          <div style="font-family: Arial, sans-serif; max-width: 700px; margin: 0 auto; color: #142333;">
+          <div
+            style="
+              font-family: Arial, sans-serif;
+              max-width: 700px;
+              margin: 0 auto;
+              color: #142333;
+            "
+          >
 
             <h2 style="color: #123f68;">
               New Long-Term Care Quote Request
             </h2>
 
             <p>
-              A new quote request has been submitted through the
-              Golden Care Financial website.
+              A new quote request has been submitted
+              through the Golden Care Financial website.
             </p>
 
             <hr />
@@ -136,13 +214,25 @@ export async function POST(request: Request) {
 
             <hr />
 
-            <p style="font-size: 13px; color: #666;">
-              This lead was submitted through the Golden Care Financial website.
+            <p
+              style="
+                font-size: 13px;
+                color: #666;
+              "
+            >
+              This lead was submitted through
+              the Golden Care Financial website.
             </p>
 
           </div>
         `,
       });
+
+    /*
+     * ========================================================
+     * CHECK RESEND ERROR
+     * ========================================================
+     */
 
     if (error) {
       console.error("RESEND ERROR:", error);
@@ -150,20 +240,36 @@ export async function POST(request: Request) {
       return NextResponse.json(
         {
           success: false,
-          error: error.message || "Failed to send email.",
+          error:
+            error.message ||
+            "Failed to send email.",
         },
         { status: 500 }
       );
     }
 
-    console.log("EMAIL SENT:", emailData);
+    console.log(
+      "EMAIL SENT:",
+      emailData
+    );
+
+    /*
+     * ========================================================
+     * SUCCESS
+     * ========================================================
+     */
 
     return NextResponse.json({
       success: true,
-      message: "Email sent successfully.",
+      message:
+        "Lead submitted successfully.",
     });
+
   } catch (error) {
-    console.error("SERVER ERROR:", error);
+    console.error(
+      "SERVER ERROR:",
+      error
+    );
 
     return NextResponse.json(
       {
