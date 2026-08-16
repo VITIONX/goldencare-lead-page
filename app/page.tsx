@@ -1,3 +1,4 @@
+```tsx
 "use client";
 
 import { FormEvent, useState } from "react";
@@ -269,10 +270,6 @@ export default function Home() {
 
         {/* ===================================================
             HERO CONTENT
-
-            ONLY TWO COLUMNS:
-            LEFT = CONTENT
-            RIGHT = FORM
         =================================================== */}
 
         <div className="hero-content">
@@ -408,15 +405,17 @@ export default function Home() {
                   <input
                     type="email"
                     name="email"
-                    placeholder="Email Address"
+                    placeholder="Email Address*"
                     autoComplete="email"
+                    required
                   />
 
                   <input
                     type="tel"
                     name="phone"
-                    placeholder="555-555-1212"
+                    placeholder="555-555-1212*"
                     autoComplete="tel"
+                    required
                   />
                 </div>
 
@@ -573,16 +572,11 @@ export default function Home() {
 
         {/* =====================================================
             COMPANY LOGO MARQUEE
-
-            IMPORTANT:
-            This is OUTSIDE .hero-content.
-
-            Therefore it will NOT become a third grid
-            column/row and all logos will stay horizontal.
         ===================================================== */}
 
         <div className="company-marquee">
           <div className="company-marquee-track">
+
             {/* FIRST LOGO SET */}
 
             <div className="company-logo-set">
@@ -621,6 +615,7 @@ export default function Home() {
                 )
               )}
             </div>
+
           </div>
         </div>
       </section>
@@ -647,6 +642,7 @@ export default function Home() {
         </p>
 
         <div className="info-grid">
+
           {/* CARD 01 */}
 
           <div className="info-card">
@@ -700,6 +696,7 @@ export default function Home() {
               financial goals.
             </p>
           </div>
+
         </div>
       </section>
 
@@ -709,6 +706,7 @@ export default function Home() {
 
       <section className="care-section">
         <div className="care-content">
+
           <p className="eyebrow">
             PLAN WITH PURPOSE
           </p>
@@ -732,6 +730,7 @@ export default function Home() {
           >
             REQUEST A QUOTE
           </a>
+
         </div>
 
         <div className="care-image">
@@ -748,6 +747,7 @@ export default function Home() {
 
       <section className="trust-section">
         <div className="trust-inner">
+
           <p className="eyebrow">
             YOUR FUTURE MATTERS
           </p>
@@ -771,6 +771,7 @@ export default function Home() {
           >
             GET STARTED
           </a>
+
         </div>
       </section>
 
@@ -779,6 +780,7 @@ export default function Home() {
       ===================================================== */}
 
       <section className="final-cta">
+
         <p className="eyebrow">
           TAKE THE NEXT STEP
         </p>
@@ -801,6 +803,7 @@ export default function Home() {
         >
           REQUEST A QUOTE
         </a>
+
       </section>
 
       {/* =====================================================
@@ -808,6 +811,7 @@ export default function Home() {
       ===================================================== */}
 
       <footer className="site-footer">
+
         <div className="footer-logo">
           GOLDEN
           <span>CARE</span>
@@ -819,6 +823,7 @@ export default function Home() {
         </p>
 
         <div className="footer-links">
+
           <a href="#">
             Privacy Policy
           </a>
@@ -826,8 +831,11 @@ export default function Home() {
           <a href="#">
             Terms &amp; Conditions
           </a>
+
         </div>
+
       </footer>
     </main>
   );
 }
+```
