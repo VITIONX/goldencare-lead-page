@@ -331,22 +331,22 @@ export default function Home() {
                 {/* NAME */}
 
                 <div className="form-row">
-                  <input
-                    type="text"
-                    name="firstName"
-                    placeholder="First Name*"
-                    autoComplete="given-name"
-                    required
-                  />
+  <input
+    type="email"
+    name="email"
+    placeholder="Email Address*"
+    autoComplete="email"
+    required
+  />
 
-                  <input
-                    type="text"
-                    name="lastName"
-                    placeholder="Last Name*"
-                    autoComplete="family-name"
-                    required
-                  />
-                </div>
+  <input
+    type="tel"
+    name="phone"
+    placeholder="555-555-1212*"
+    autoComplete="tel"
+    required
+  />
+</div>
 
                 {/* ADDRESS */}
 
