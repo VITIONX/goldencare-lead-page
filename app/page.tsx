@@ -815,9 +815,11 @@ export default function Home() {
       <footer className="site-footer">
 
         <div className="footer-logo">
-          GOLDEN
-          <span>CARE</span>
-        </div>
+  <img
+    src="/images/logo.png"
+    alt="Golden Care Financial"
+  />
+</div>
 
         <p>
           © 2026 Golden Care Financial.
