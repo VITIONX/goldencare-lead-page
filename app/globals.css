@@ -170,7 +170,7 @@ a {
 .header-contact small {
   display: block;
 
-  font-size: 10px;
+  font-size: 15px;
 
   letter-spacing: 1.2px;
 
@@ -180,7 +180,7 @@ a {
 }
 
 .header-contact strong {
-  font-size: 18px;
+  font-size: 30px;
 
   color: var(--gold);
 }
